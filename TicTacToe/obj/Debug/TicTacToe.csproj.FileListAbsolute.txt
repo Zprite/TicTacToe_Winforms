@@ -8,3 +8,13 @@ C:\Users\Marcus\source\repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.Gene
 C:\Users\Marcus\source\repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CoreCompileInputs.cache
 C:\Users\Marcus\source\repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\Marcus\source\repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.csprojAssemblyReference.cache
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.Form1.resources
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.cache
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.csproj.CoreCompileInputs.cache
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\MC\Documents\Github\tictactoe_winforms\TicTacToe\bin\Debug\TicTacToe.pdb

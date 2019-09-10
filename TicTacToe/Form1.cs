@@ -123,11 +123,11 @@ namespace TicTacToe
         }
         private void disableCells()
         {
-            foreach (Button button in this.Controls.OfType<Button>()) // Velger alle knapper i denne klassen :/
+            foreach (Control c in boardPanel.Controls)
             {
-                button.Enabled = false;
+                if (c is Button)
+                    c.Enabled = false;
             }
-            reset_btn.Enabled = true;
         }
         private void resetGame()
         {
@@ -139,16 +139,21 @@ namespace TicTacToe
                     board[i, j] = "";
                 }
             }
-            foreach (Button button in this.Controls.OfType<Button>())
-            {
-                button.Text = "";
-                button.Enabled = true;
-            }
-            reset_btn.Text = "RESET";
+            resetButtons();
             player = "X";
             turnCount = 1;
             label1.ForeColor = Color.White;
         }
-
+        private void resetButtons ()
+        {
+            foreach(Control c in boardPanel.Controls)
+            {
+                if (c is Button)
+                {
+                    c.Text = "";
+                    c.Enabled = true;
+                }
+            }
+        }
     }
 }
