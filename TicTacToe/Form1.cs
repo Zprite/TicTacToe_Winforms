@@ -14,7 +14,7 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         string player = "X";
-        string opponent = "O";
+        const string player1String = "X";
         string[,] board = new string[3, 3];
         int turnCount = 1;
         public Form1()
@@ -35,23 +35,14 @@ namespace TicTacToe
             else
             {
                 changePlayer();
+                label1.Text = player + " turn";
                 cell.Enabled = false;
                 turnCount++;
-                label1.Text = player + " turn";
                 computerTurn();
             }
 
         }
 
-        private void changePlayer()
-        {
-            if (player == "X")
-            {
-                player = "O";
-            }
-            else
-                player = "X";
-        }
         private void disableCells()
         {
             foreach (Control c in boardPanel.Controls)
@@ -99,6 +90,15 @@ namespace TicTacToe
             int yPos = btn.Name[btn.Name.Length - 1] - '0';
             board[xPos, yPos] = player;
             // System.Diagnostics.Debug.WriteLine("Xpos:" + xPos + "yPos:" + yPos + " player:" + board[xPos, yPos]);
+        }
+        private void changePlayer()
+        {
+            if (player == "X")
+            {
+                player = "O";
+            }
+            else
+                player = "X";
         }
         private bool checkWin()
         {
@@ -169,15 +169,13 @@ namespace TicTacToe
         }
         #endregion
         #region AI
-
         private void computerTurn()
         {
             string move = computerDecideMove();
             label1.Text = player + " turn";
-            if (move != null)
-            {
-                System.Threading.Thread.Sleep(300);
-                board[move[0] - '0', move[1] - '0'] = player;
+            label1.Refresh();
+            board[move[0] - '0', move[1] - '0'] = player;
+            System.Threading.Thread.Sleep(500);
                 foreach (Control c in boardPanel.Controls)
                 {
                     if (c is Button)
@@ -191,21 +189,26 @@ namespace TicTacToe
                 }
                 if (checkWin())
                     disableCells();
-                changePlayer();
-                turnCount++;
-            }
-            
+                else
+                {
+                    changePlayer();
+                    label1.Text = player + " turn";
+                    turnCount++;
+                }
+
+
         }
         private string computerDecideMove()
         {
             string move = checkImmidiateEnd(player);
             if (move != null)
                 return move;
-            move =  checkImmidiateEnd("X");
+            move =  checkImmidiateEnd(player1String);
             if (move != null)
                 return move;
-            // Check row/col/diag with possible win
-            // Else set unset cell
+
+            // Check row/col/diag function with possible win (Advanced function)
+
             move = checkAvailableCell(3);
             if (move != null)
                 return move;
@@ -240,7 +243,7 @@ namespace TicTacToe
                         yPos = i;
                     }
                         
-                    if (playerCount == maxVal && spaceCount == 1)
+                    if (playerCount == maxVal-1 && spaceCount == 1)
                         return xPos.ToString() + yPos.ToString();
                 }
             }
