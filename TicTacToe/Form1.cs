@@ -200,6 +200,10 @@ namespace TicTacToe
         }
         private string computerDecideMove()
         {
+            if (cell11.Enabled == true) // Allways take middle if possible ! 
+            {
+                return "11";
+            }
             string move = checkImmidiateEnd(player);
             if (move != null)
                 return move;
