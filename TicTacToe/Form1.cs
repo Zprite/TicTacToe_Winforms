@@ -316,15 +316,20 @@ namespace TicTacToe
         }
         private string checkAvailableCell(int maxVal)
         {
+            string[] availableCells = new string[9];
+            int availableCount = 0;
             for (int i = 0; i < maxVal; i++)
             {
                 for (int j = 0; j< maxVal; j++)
                 {
                     if (board[i, j] == null)
-                        return i.ToString() + j.ToString();
+                    {
+                        availableCells[availableCount] = i.ToString() + j.ToString();
+                    }
                 }
             }
-            return null;
+            Random rng = new Random();
+            return availableCells[rng.Next(0, availableCount)];
         }
         #endregion
     }
