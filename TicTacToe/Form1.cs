@@ -14,6 +14,7 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         string player = "X";
+        string opponent = "O";
         string[,] board = new string[3, 3];
         int turnCount = 1;
         public Form1()
@@ -34,30 +35,69 @@ namespace TicTacToe
             else
             {
                 if (player == "X")
+                {
                     player = "O";
+                }
                 else
                     player = "X";
                 cell.Enabled = false;
                 turnCount++;
                 label1.Text = player + " turn";
+                // aiTurn();
             }
 
+        }
+        private void disableCells()
+        {
+            foreach (Control c in boardPanel.Controls)
+            {
+                if (c is Button)
+                    c.Enabled = false;
+            }
         }
         private void Reset_btn_Click(object sender, EventArgs e)
         {
             resetGame();
         }
+        private void resetGame()
+        {
+            label1.Text = "X turn";
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    board[i, j] = "";
+                }
+            }
+            resetButtons();
+            player = "X";
+            turnCount = 1;
+            label1.ForeColor = Color.White;
+        }
+        private void resetButtons()
+        {
+            foreach (Control c in boardPanel.Controls)
+            {
+                if (c is Button)
+                {
+                    c.Text = "";
+                    c.Enabled = true;
+                }
+            }
+        }
         #endregion
+
+        #region GameLogic
         private void setBoard(Button btn)
         {
             int xPos = btn.Name[btn.Name.Length - 2] - '0';
             int yPos = btn.Name[btn.Name.Length - 1] - '0';
             board[xPos, yPos] = player;
-            System.Diagnostics.Debug.WriteLine("Xpos:" + xPos + "yPos:" + yPos + " player:" + board[xPos, yPos]);
+            // System.Diagnostics.Debug.WriteLine("Xpos:" + xPos + "yPos:" + yPos + " player:" + board[xPos, yPos]);
         }
         private bool checkWin()
         {
-            if (checkCol() || checkRow() || checkDiag())
+           if (checkCol(3) || checkRow(3) || checkDiag(3))
             {
                 label1.Text = player + " WINS!";
                 label1.ForeColor = Color.LimeGreen;
@@ -71,89 +111,166 @@ namespace TicTacToe
             }
             return false;
         }
-        private bool checkCol()
+        private bool checkCol(int maxVal)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < maxVal; i++)
             {
-                int count = 0;
-                for (int j = 0; j < 2; j++)
+                int playerCount = 0;
+                for (int j = 0; j < maxVal; j++)
                 {
-                    if (board[i, j] == board[i, j + 1] && board[i, j] == player)
-                        count++;
-                    if (count == 2)
+                    if (board[i, j] == player)
+                        playerCount++;
+                    if (playerCount == maxVal)
                         return true;
                 }
             }
             return false;
         }
-        private bool checkRow()
+        private bool checkRow(int maxVal)
         {
-            for (int i = 0; i<3;i++)
+            for (int i = 0; i<maxVal;i++)
             {
-                int count = 0;
-                for (int j = 0; j < 2; j++)
+                int playerCount = 0;
+                for (int j = 0; j < maxVal; j++)
                 {
-                    if (board[j, i] == board[j + 1, i] && board[j, i] == player)
-                        count++;
-                    if (count == 2)
+                    if (board[j, i] == player)
+                        playerCount++;
+                    if (playerCount == maxVal)
                         return true;
                 }
             }
             return false;
         }
-        private bool checkDiag()
+        private bool checkDiag(int maxVal)
         {
-            int counter=0;
-            for(int i = 0; i < 2; i++) // Sjekker "\" diagonal
+            int playerCount=0;
+            for(int i = 0; i < maxVal; i++) // Sjekker "\" diagonal
             {
-                if (board[i, i] == board[i + 1, i + 1] && board[i, i] == player)
-                    counter++;
+                if (board[i, i] == player)
+                    playerCount++;
             }
-            if (counter == 2)
+            if (playerCount == maxVal)
                 return true;
-            counter = 0;
-            for (int i = 0; i < 2;i++) // Sjekker "/" diagonal
+
+            playerCount = 0;
+            for (int i = 0; i < maxVal;i++) // Sjekker "/" diagonal
             {
-                if (board[2-i, i] == board[1-i , i + 1] && board[2-i, i] == player)
-                    counter++;
+                if (board[(maxVal-1)-i, i] == player)
+                    playerCount++;
             }
-            if (counter == 2)
+            if (playerCount == maxVal)
                 return true;
             return false;
         }
-        private void disableCells()
+        #endregion
+        #region AI
+
+        private void aiTurn()
         {
-            foreach (Control c in boardPanel.Controls)
-            {
-                if (c is Button)
-                    c.Enabled = false;
-            }
+            string move = aiDecideMove();
+            board[move[0], move[1]] = player;
         }
-        private void resetGame()
+        private string aiDecideMove()
         {
-            label1.Text = "X turn";
-            for(int i = 0; i < 3; i++)
+            string move = checkImmidiateEnd(player);
+            if (move != "")
+                return move;
+            move =  checkImmidiateEnd(opponent);
+            if (move != "")
+                return move;
+            // Check row/col/diag with possible win
+            // Else set unset cell
+            move = checkAvailableCell(3);
+            if (move != "")
+                return move;
+            return "REEEEE";
+        }
+
+        private string checkImmidiateEnd(string playerIcon) {
+            string movePos = "";
+            if (checkImmidiateEndCol(3, playerIcon) != "")
+                movePos = checkImmidiateEndCol(3, playerIcon);
+           else if (checkImmidiateEndRow(3, playerIcon) != "")
+                movePos = checkImmidiateEndRow(3, playerIcon);
+           else if (checkImmidiateEndDiag(3, playerIcon) != "")
+                movePos = checkImmidiateEndDiag(3, playerIcon);
+            return movePos;
+        }
+        private string checkImmidiateEndRow(int maxVal, string player)
+        {
+            for (int i = 0; i < maxVal; i++)
             {
-                for (int j = 0; j < 3; j++)
+                int playerCount = 0;
+                int spaceCount = 0;
+                for (int j = 0; j < maxVal; j++)
                 {
-                    board[i, j] = "";
+                    if (board[j, i] == player)
+                        playerCount++;
+                    else if (board[j, i] == "")
+                        spaceCount++;
+                    if (playerCount == maxVal && spaceCount == 1)
+                        return j.ToString() + i.ToString();
                 }
             }
-            resetButtons();
-            player = "X";
-            turnCount = 1;
-            label1.ForeColor = Color.White;
+            return "";
         }
-        private void resetButtons ()
+        private string checkImmidiateEndCol(int maxVal, string player)
         {
-            foreach(Control c in boardPanel.Controls)
+            for (int i = 0; i < maxVal; i++)
             {
-                if (c is Button)
+                int playerCount = 0;
+                int spaceCount = 0;
+                for (int j = 0; j < maxVal; j++)
                 {
-                    c.Text = "";
-                    c.Enabled = true;
+                    if (board[i, j] == player)
+                        playerCount++;
+                    else if (board[i, j] == "")
+                        spaceCount++;
+                    if (playerCount == maxVal-1 && spaceCount == 1)
+                        return i.ToString() + j.ToString();
                 }
             }
+            return "";
         }
+        private string checkImmidiateEndDiag(int maxVal, string player)
+        {
+            int playerCount = 0;
+            int spaceCount = 0;
+            for (int i = 0; i < maxVal; i++)
+            {
+                    if (board[i, i] == player)
+                        playerCount++;
+                    else if (board[i, i] == "")
+                        spaceCount++;
+                if (playerCount == maxVal - 1 && spaceCount == 1)
+                    return i.ToString() + i.ToString();
+            }
+            playerCount = 0;
+            spaceCount = 0;
+            for (int i = 0; i < maxVal; i++) // Sjekker "/" diagonal
+            {
+                if (board[(maxVal - 1) - i, i] == player)
+                    playerCount++;
+                else if (board[(maxVal - 1) - i, i] == player)
+                    spaceCount++;
+                if (playerCount == maxVal - 1 && spaceCount == 1)
+                    return ((maxVal-1)-i).ToString() + i.ToString();
+            }
+            return "";
+        }
+        private string checkAvailableCell(int maxVal)
+        {
+            for (int i = 0; i < maxVal; i++)
+            {
+                for (int j = 0; j< maxVal; j++)
+                {
+                    if (board[i, j] == "")
+                        return i.ToString() + j.ToString();
+                }
+            }
+            return "ERROR";
+        }
+        #endregion
     }
+
 }
