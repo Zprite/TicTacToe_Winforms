@@ -34,18 +34,23 @@ namespace TicTacToe
                 disableCells();
             else
             {
-                if (player == "X")
-                {
-                    player = "O";
-                }
-                else
-                    player = "X";
+                changePlayer();
                 cell.Enabled = false;
                 turnCount++;
                 label1.Text = player + " turn";
-                // aiTurn();
+                computerTurn();
             }
 
+        }
+
+        private void changePlayer()
+        {
+            if (player == "X")
+            {
+                player = "O";
+            }
+            else
+                player = "X";
         }
         private void disableCells()
         {
@@ -66,7 +71,7 @@ namespace TicTacToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    board[i, j] = "";
+                    board[i, j] = null;
                 }
             }
             resetButtons();
@@ -165,34 +170,55 @@ namespace TicTacToe
         #endregion
         #region AI
 
-        private void aiTurn()
+        private void computerTurn()
         {
-            string move = aiDecideMove();
-            board[move[0], move[1]] = player;
+            string move = computerDecideMove();
+            label1.Text = player + " turn";
+            if (move != null)
+            {
+                System.Threading.Thread.Sleep(300);
+                board[move[0] - '0', move[1] - '0'] = player;
+                foreach (Control c in boardPanel.Controls)
+                {
+                    if (c is Button)
+                    {
+                        if (c.Name == "cell" + move[0] + move[1])
+                        {
+                            c.Enabled = false;
+                            c.Text = player;
+                        }    
+                    }
+                }
+                if (checkWin())
+                    disableCells();
+                changePlayer();
+                turnCount++;
+            }
+            
         }
-        private string aiDecideMove()
+        private string computerDecideMove()
         {
             string move = checkImmidiateEnd(player);
-            if (move != "")
+            if (move != null)
                 return move;
-            move =  checkImmidiateEnd(opponent);
-            if (move != "")
+            move =  checkImmidiateEnd("X");
+            if (move != null)
                 return move;
             // Check row/col/diag with possible win
             // Else set unset cell
             move = checkAvailableCell(3);
-            if (move != "")
+            if (move != null)
                 return move;
             return "REEEEE";
         }
 
         private string checkImmidiateEnd(string playerIcon) {
-            string movePos = "";
-            if (checkImmidiateEndCol(3, playerIcon) != "")
+            string movePos = null;
+            if (checkImmidiateEndCol(3, playerIcon) != null)
                 movePos = checkImmidiateEndCol(3, playerIcon);
-           else if (checkImmidiateEndRow(3, playerIcon) != "")
+           else if (checkImmidiateEndRow(3, playerIcon) != null)
                 movePos = checkImmidiateEndRow(3, playerIcon);
-           else if (checkImmidiateEndDiag(3, playerIcon) != "")
+           else if (checkImmidiateEndDiag(3, playerIcon) != null)
                 movePos = checkImmidiateEndDiag(3, playerIcon);
             return movePos;
         }
@@ -202,17 +228,23 @@ namespace TicTacToe
             {
                 int playerCount = 0;
                 int spaceCount = 0;
+                int xPos = 0;
+                int yPos = 0;
                 for (int j = 0; j < maxVal; j++)
                 {
                     if (board[j, i] == player)
                         playerCount++;
-                    else if (board[j, i] == "")
+                    else if (board[j, i] == null){
                         spaceCount++;
+                        xPos = j;
+                        yPos = i;
+                    }
+                        
                     if (playerCount == maxVal && spaceCount == 1)
-                        return j.ToString() + i.ToString();
+                        return xPos.ToString() + yPos.ToString();
                 }
             }
-            return "";
+            return null;
         }
         private string checkImmidiateEndCol(int maxVal, string player)
         {
@@ -220,30 +252,43 @@ namespace TicTacToe
             {
                 int playerCount = 0;
                 int spaceCount = 0;
+                int xPos = 0;
+                int yPos = 0;
                 for (int j = 0; j < maxVal; j++)
                 {
                     if (board[i, j] == player)
                         playerCount++;
-                    else if (board[i, j] == "")
+                    else if (board[i, j] == null)
+                    {
                         spaceCount++;
+                        xPos = i;
+                        yPos = j;
+                    }
+                        
                     if (playerCount == maxVal-1 && spaceCount == 1)
-                        return i.ToString() + j.ToString();
+                        return xPos.ToString() + yPos.ToString();
                 }
             }
-            return "";
+            return null;
         }
         private string checkImmidiateEndDiag(int maxVal, string player)
         {
             int playerCount = 0;
             int spaceCount = 0;
+            int xPos = 0;
+            int yPos = 0;
             for (int i = 0; i < maxVal; i++)
             {
                     if (board[i, i] == player)
                         playerCount++;
-                    else if (board[i, i] == "")
-                        spaceCount++;
+                    else if (board[i, i] == null)
+                {
+                    spaceCount++;
+                    xPos = i;
+                }
+                       
                 if (playerCount == maxVal - 1 && spaceCount == 1)
-                    return i.ToString() + i.ToString();
+                    return xPos.ToString() + xPos.ToString();
             }
             playerCount = 0;
             spaceCount = 0;
@@ -251,12 +296,16 @@ namespace TicTacToe
             {
                 if (board[(maxVal - 1) - i, i] == player)
                     playerCount++;
-                else if (board[(maxVal - 1) - i, i] == player)
+                else if (board[(maxVal - 1) - i, i] == null) {
                     spaceCount++;
+                    xPos = (maxVal - 1) - i;
+                    yPos = i;
+                }
+                    
                 if (playerCount == maxVal - 1 && spaceCount == 1)
-                    return ((maxVal-1)-i).ToString() + i.ToString();
+                    return xPos.ToString() + yPos.ToString();
             }
-            return "";
+            return null;
         }
         private string checkAvailableCell(int maxVal)
         {
@@ -264,11 +313,11 @@ namespace TicTacToe
             {
                 for (int j = 0; j< maxVal; j++)
                 {
-                    if (board[i, j] == "")
+                    if (board[i, j] == null)
                         return i.ToString() + j.ToString();
                 }
             }
-            return "ERROR";
+            return null;
         }
         #endregion
     }
