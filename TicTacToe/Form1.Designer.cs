@@ -40,7 +40,11 @@
             this.cell00 = new System.Windows.Forms.Button();
             this.cell12 = new System.Windows.Forms.Button();
             this.boardPanel = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gameModeComputer = new System.Windows.Forms.RadioButton();
+            this.gameMode2P = new System.Windows.Forms.RadioButton();
             this.boardPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -48,18 +52,17 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(96, 57);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(209, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 37);
+            this.label1.Size = new System.Drawing.Size(0, 46);
             this.label1.TabIndex = 9;
             // 
             // reset_btn
             // 
-            this.reset_btn.Location = new System.Drawing.Point(321, 65);
-            this.reset_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reset_btn.Location = new System.Drawing.Point(509, 73);
+            this.reset_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.reset_btn.Name = "reset_btn";
-            this.reset_btn.Size = new System.Drawing.Size(87, 36);
+            this.reset_btn.Size = new System.Drawing.Size(116, 44);
             this.reset_btn.TabIndex = 12;
             this.reset_btn.TabStop = false;
             this.reset_btn.Text = "RESET";
@@ -72,10 +75,10 @@
             this.cell02.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell02.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell02.ForeColor = System.Drawing.Color.Black;
-            this.cell02.Location = new System.Drawing.Point(-2, 179);
-            this.cell02.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell02.Location = new System.Drawing.Point(-3, 220);
+            this.cell02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell02.Name = "cell02";
-            this.cell02.Size = new System.Drawing.Size(104, 84);
+            this.cell02.Size = new System.Drawing.Size(139, 103);
             this.cell02.TabIndex = 6;
             this.cell02.TabStop = false;
             this.cell02.Text = " ";
@@ -88,10 +91,10 @@
             this.cell01.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell01.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell01.ForeColor = System.Drawing.Color.Black;
-            this.cell01.Location = new System.Drawing.Point(-2, 90);
-            this.cell01.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell01.Location = new System.Drawing.Point(-3, 111);
+            this.cell01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell01.Name = "cell01";
-            this.cell01.Size = new System.Drawing.Size(104, 84);
+            this.cell01.Size = new System.Drawing.Size(139, 103);
             this.cell01.TabIndex = 3;
             this.cell01.TabStop = false;
             this.cell01.Text = " ";
@@ -104,10 +107,10 @@
             this.cell20.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell20.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell20.ForeColor = System.Drawing.Color.Black;
-            this.cell20.Location = new System.Drawing.Point(214, 1);
-            this.cell20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell20.Location = new System.Drawing.Point(285, 1);
+            this.cell20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell20.Name = "cell20";
-            this.cell20.Size = new System.Drawing.Size(104, 84);
+            this.cell20.Size = new System.Drawing.Size(139, 103);
             this.cell20.TabIndex = 2;
             this.cell20.TabStop = false;
             this.cell20.Text = " ";
@@ -120,10 +123,10 @@
             this.cell21.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell21.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell21.ForeColor = System.Drawing.Color.Black;
-            this.cell21.Location = new System.Drawing.Point(214, 91);
-            this.cell21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell21.Location = new System.Drawing.Point(285, 112);
+            this.cell21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell21.Name = "cell21";
-            this.cell21.Size = new System.Drawing.Size(104, 83);
+            this.cell21.Size = new System.Drawing.Size(139, 102);
             this.cell21.TabIndex = 5;
             this.cell21.TabStop = false;
             this.cell21.Text = " ";
@@ -136,10 +139,10 @@
             this.cell11.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell11.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell11.ForeColor = System.Drawing.Color.Black;
-            this.cell11.Location = new System.Drawing.Point(106, 91);
-            this.cell11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell11.Location = new System.Drawing.Point(141, 112);
+            this.cell11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell11.Name = "cell11";
-            this.cell11.Size = new System.Drawing.Size(104, 84);
+            this.cell11.Size = new System.Drawing.Size(139, 103);
             this.cell11.TabIndex = 10;
             this.cell11.TabStop = false;
             this.cell11.Text = " ";
@@ -152,10 +155,10 @@
             this.cell22.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell22.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell22.ForeColor = System.Drawing.Color.Black;
-            this.cell22.Location = new System.Drawing.Point(214, 179);
-            this.cell22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell22.Location = new System.Drawing.Point(285, 220);
+            this.cell22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell22.Name = "cell22";
-            this.cell22.Size = new System.Drawing.Size(104, 84);
+            this.cell22.Size = new System.Drawing.Size(139, 103);
             this.cell22.TabIndex = 7;
             this.cell22.TabStop = false;
             this.cell22.Text = " ";
@@ -168,10 +171,10 @@
             this.cell10.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell10.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell10.ForeColor = System.Drawing.Color.Black;
-            this.cell10.Location = new System.Drawing.Point(106, 1);
-            this.cell10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell10.Location = new System.Drawing.Point(141, 1);
+            this.cell10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell10.Name = "cell10";
-            this.cell10.Size = new System.Drawing.Size(104, 84);
+            this.cell10.Size = new System.Drawing.Size(139, 103);
             this.cell10.TabIndex = 1;
             this.cell10.TabStop = false;
             this.cell10.Text = " ";
@@ -184,10 +187,10 @@
             this.cell00.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell00.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell00.ForeColor = System.Drawing.Color.Black;
-            this.cell00.Location = new System.Drawing.Point(-2, 1);
-            this.cell00.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell00.Location = new System.Drawing.Point(-3, 1);
+            this.cell00.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell00.Name = "cell00";
-            this.cell00.Size = new System.Drawing.Size(104, 84);
+            this.cell00.Size = new System.Drawing.Size(139, 103);
             this.cell00.TabIndex = 0;
             this.cell00.TabStop = false;
             this.cell00.UseVisualStyleBackColor = false;
@@ -199,10 +202,10 @@
             this.cell12.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cell12.Font = new System.Drawing.Font("Courier New", 31.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cell12.ForeColor = System.Drawing.Color.Black;
-            this.cell12.Location = new System.Drawing.Point(106, 179);
-            this.cell12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cell12.Location = new System.Drawing.Point(141, 220);
+            this.cell12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cell12.Name = "cell12";
-            this.cell12.Size = new System.Drawing.Size(104, 84);
+            this.cell12.Size = new System.Drawing.Size(139, 103);
             this.cell12.TabIndex = 11;
             this.cell12.TabStop = false;
             this.cell12.Text = " ";
@@ -220,24 +223,66 @@
             this.boardPanel.Controls.Add(this.cell01);
             this.boardPanel.Controls.Add(this.cell11);
             this.boardPanel.Controls.Add(this.cell00);
-            this.boardPanel.Location = new System.Drawing.Point(90, 145);
+            this.boardPanel.Location = new System.Drawing.Point(201, 171);
+            this.boardPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boardPanel.Name = "boardPanel";
-            this.boardPanel.Size = new System.Drawing.Size(320, 262);
+            this.boardPanel.Size = new System.Drawing.Size(427, 322);
             this.boardPanel.TabIndex = 13;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gameMode2P);
+            this.groupBox1.Controls.Add(this.gameModeComputer);
+            this.groupBox1.ForeColor = System.Drawing.Color.Snow;
+            this.groupBox1.Location = new System.Drawing.Point(25, 63);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(150, 103);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Menu";
+            // 
+            // gameModeComputer
+            // 
+            this.gameModeComputer.AutoSize = true;
+            this.gameModeComputer.ForeColor = System.Drawing.Color.Snow;
+            this.gameModeComputer.Location = new System.Drawing.Point(7, 22);
+            this.gameModeComputer.Name = "gameModeComputer";
+            this.gameModeComputer.Size = new System.Drawing.Size(141, 21);
+            this.gameModeComputer.TabIndex = 0;
+            this.gameModeComputer.TabStop = true;
+            this.gameModeComputer.Text = "Play vs. computer";
+            this.gameModeComputer.UseVisualStyleBackColor = true;
+            this.gameModeComputer.CheckedChanged += new System.EventHandler(this.GameModeComputer_CheckedChanged);
+            // 
+            // gameMode2P
+            // 
+            this.gameMode2P.AutoSize = true;
+            this.gameMode2P.ForeColor = System.Drawing.Color.Snow;
+            this.gameMode2P.Location = new System.Drawing.Point(7, 49);
+            this.gameMode2P.Name = "gameMode2P";
+            this.gameMode2P.Size = new System.Drawing.Size(85, 21);
+            this.gameMode2P.TabIndex = 1;
+            this.gameMode2P.TabStop = true;
+            this.gameMode2P.Text = "2- player";
+            this.gameMode2P.UseVisualStyleBackColor = true;
+            this.gameMode2P.CheckedChanged += new System.EventHandler(this.GameMode2P_CheckedChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(502, 476);
+            this.ClientSize = new System.Drawing.Size(961, 562);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.boardPanel);
             this.Controls.Add(this.reset_btn);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.boardPanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,6 +301,9 @@
         private System.Windows.Forms.Button cell00;
         private System.Windows.Forms.Button cell12;
         private System.Windows.Forms.Panel boardPanel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton gameMode2P;
+        private System.Windows.Forms.RadioButton gameModeComputer;
     }
 }
 

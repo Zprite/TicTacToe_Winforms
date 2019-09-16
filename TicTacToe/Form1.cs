@@ -14,6 +14,7 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         string player = "X";
+        bool playVsComputer = true;
         const string player1String = "X";
         string[,] board = new string[3, 3];
         int turnCount = 1;
@@ -38,9 +39,21 @@ namespace TicTacToe
                 label1.Text = player + " turn";
                 cell.Enabled = false;
                 turnCount++;
-                computerTurn();
+                if (playVsComputer == true)
+                    computerTurn();
             }
 
+        }
+        private void GameMode2P_CheckedChanged(object sender, EventArgs e)
+        {
+            resetGame();
+            playVsComputer = false;
+        }
+
+        private void GameModeComputer_CheckedChanged(object sender, EventArgs e)
+        {
+            resetGame();
+            playVsComputer = true;
         }
 
         private void disableCells()
@@ -195,8 +208,6 @@ namespace TicTacToe
                     label1.Text = player + " turn";
                     turnCount++;
                 }
-
-
         }
         private string computerDecideMove()
         {
@@ -324,7 +335,11 @@ namespace TicTacToe
                 {
                     if (board[i, j] == null)
                     {
-                        availableCells[availableCount] = i.ToString() + j.ToString();
+                        String availableCell = i.ToString() + j.ToString();
+                        // Take corner if available
+                        if (availableCell == "00" || availableCell == "02" || availableCell == "20" || availableCell == "22")
+                            return availableCell;
+                        availableCells[availableCount] = availableCell;
                         availableCount++;
                     }
                 }
