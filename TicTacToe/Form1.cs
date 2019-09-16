@@ -325,11 +325,12 @@ namespace TicTacToe
                     if (board[i, j] == null)
                     {
                         availableCells[availableCount] = i.ToString() + j.ToString();
+                        availableCount++;
                     }
                 }
             }
             Random rng = new Random();
-            return availableCells[rng.Next(0, availableCount)];
+            return availableCells[rng.Next(availableCount)];
         }
         #endregion
     }
